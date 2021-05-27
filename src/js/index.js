@@ -1,15 +1,25 @@
 //import react into the bundle
 import React from "react";
 import ReactDOM from "react-dom";
-
-//include bootstrap npm library into the bundle
 import "bootstrap";
-
-//include your index.scss file into the bundle
 import "../styles/index.scss";
+import { SimpleCounter } from "./component/home.js";
 
-//import your own components
-import { Home } from "./component/home.js";
+let counter = 0;
+setInterval(function() {
+	const four = Math.floor(counter / 1000);
+	const three = Math.floor(counter / 100);
+	const two = Math.floor(counter / 10);
+	const one = Math.floor(counter / 1);
+	counter++;
 
-//render your react application
-ReactDOM.render(<Home />, document.querySelector("#app"));
+	ReactDOM.render(
+		<SimpleCounter
+			digitFour={four % 10}
+			digitThree={three % 10}
+			digitTwo={two % 10}
+			digitOne={one % 10}
+		/>,
+		document.querySelector("#app")
+	);
+}, 1000);
